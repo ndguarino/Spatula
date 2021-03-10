@@ -19,4 +19,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.respository }}:${{ github.sha }}
+          tags: ghcr.io/ndguarino/spatula:latest,ghcr.io/ndguarino/spatula:${{ github.sha }}
