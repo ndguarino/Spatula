@@ -17,7 +17,13 @@ impl EventHandler for DiscordHandler {
         println!("{} is connected!", ready.user.name);
     }
 
-    async fn cache_ready(&self, ctx: Context, _guilds: Vec<GuildId>) {
+    async fn cache_ready(&self, ctx: Context, guilds: Vec<GuildId>) {
+        for guild in guilds.iter() {
+            if (*guild.as_u64() != 762319346802098236 && *guild.as_u64() != 80496995898241024) {
+                println!("Leaving guild {} ({})", guild.name(&ctx.cache).await.unwrap(), guild.as_u64());
+                guild.leave(&ctx.http).await.unwrap();
+            }
+        }
         let ctx = Arc::new(ctx);
 
         if !self.twitter_loop_running.load(Ordering::Relaxed) {
