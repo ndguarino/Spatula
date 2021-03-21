@@ -65,7 +65,7 @@ impl EventHandler for DiscordHandler {
 
 #[async_std::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    dotenv::dotenv().expect("Could not load from dotenv");
+    dotenv::dotenv()?;
 
     env_logger::init();
 
