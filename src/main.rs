@@ -74,7 +74,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     tracing::subscriber::set_global_default(subscriber)?;
 
     let framework = StandardFramework::new()
-        .configure(|c| c.prefix("#"))
+        .configure(|c| c.prefix("!"))
         .group(&emoji::EMOJI_GROUP)
         .group(&music::MUSIC_GROUP)
         .on_dispatch_error(dispatch_error)
