@@ -55,6 +55,7 @@ struct DiscordHandler {}
 #[async_trait]
 impl EventHandler for DiscordHandler {
     async fn cache_ready(&self, ctx: Context, _guilds: Vec<GuildId>) {
+        info!("Cache ready.");
         println!("Cache ready.");
         tasks::start(&ctx.clone()).await;
     }
@@ -75,7 +76,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     tracing::subscriber::set_global_default(subscriber)?;
 
     let framework = StandardFramework::new()
-        .configure(|c| c.prefix("!"))
+        .configure(|c| {
+            c.prefix("!");
+            c.disabled_commands(
+                vec!["play", "p", "queue", "skip"]
+                    .into_iter()
+                    .map(|x| x.to_string())
+                    .collect(),
+            )
+        })
         .group(&emoji::EMOJI_GROUP)
         .group(&music::MUSIC_GROUP)
         .on_dispatch_error(dispatch_error)
@@ -108,7 +117,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 | GatewayIntents::GUILD_MESSAGES
                 | GatewayIntents::GUILD_VOICE_STATES
                 | GatewayIntents::GUILD_EMOJIS
-                | GatewayIntents::GUILD_MEMBERS,
+                | GatewayIntents::GUILD_MEMBERS
+                | GatewayIntents::GUILDS,
         )
         .await
         .expect("Error creating client");
@@ -121,7 +131,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         //data.insert::<PrefixCache>(Default::default());
     }
 
-    client.start().await.expect("Client error");
+    client.start_autosharded().await.expect("Client error");
 
     Ok(())
 }

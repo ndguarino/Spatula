@@ -203,7 +203,7 @@ dependencies = [
  "log 0.4.14",
  "pin-project",
  "tokio 1.2.0",
- "tokio-rustls 0.22.0",
+ "tokio-rustls",
  "tungstenite 0.11.1",
  "webpki-roots 0.20.0",
 ]
@@ -219,7 +219,7 @@ dependencies = [
  "log 0.4.14",
  "pin-project-lite 0.2.4",
  "tokio 1.2.0",
- "tokio-rustls 0.22.0",
+ "tokio-rustls",
  "tungstenite 0.12.0",
  "webpki-roots 0.21.0",
 ]
@@ -1014,22 +1014,6 @@ dependencies = [
 
 [[package]]
 name = "hyper-rustls"
-version = "0.21.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "37743cc83e8ee85eacfce90f2f4102030d9ff0a95244098d781e9bee4a90abb6"
-dependencies = [
- "bytes 0.5.6",
- "futures-util",
- "hyper 0.13.10",
- "log 0.4.14",
- "rustls 0.18.1",
- "tokio 0.2.25",
- "tokio-rustls 0.14.1",
- "webpki",
-]
-
-[[package]]
-name = "hyper-rustls"
 version = "0.22.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5f9f7a97316d44c0af9b0301e65010573a853a9fc97046d7331d7f6bc0fd5a64"
@@ -1037,9 +1021,9 @@ dependencies = [
  "futures-util",
  "hyper 0.14.4",
  "log 0.4.14",
- "rustls 0.19.0",
+ "rustls",
  "tokio 1.2.0",
- "tokio-rustls 0.22.0",
+ "tokio-rustls",
  "webpki",
 ]
 
@@ -1748,43 +1732,6 @@ dependencies = [
 
 [[package]]
 name = "reqwest"
-version = "0.10.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0718f81a8e14c4dbb3b34cf23dc6aaf9ab8a0dfec160c534b3dbca1aaa21f47c"
-dependencies = [
- "base64 0.13.0",
- "bytes 0.5.6",
- "encoding_rs",
- "futures-core",
- "futures-util",
- "http",
- "http-body 0.3.1",
- "hyper 0.13.10",
- "hyper-rustls 0.21.0",
- "ipnet",
- "js-sys",
- "lazy_static",
- "log 0.4.14",
- "mime",
- "mime_guess",
- "percent-encoding",
- "pin-project-lite 0.2.4",
- "rustls 0.18.1",
- "serde",
- "serde_json",
- "serde_urlencoded",
- "tokio 0.2.25",
- "tokio-rustls 0.14.1",
- "url",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
- "webpki-roots 0.20.0",
- "winreg",
-]
-
-[[package]]
-name = "reqwest"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0460542b551950620a3648c6aa23318ac6b3cd779114bd873209e6e8b5eb1c34"
@@ -1797,7 +1744,7 @@ dependencies = [
  "http",
  "http-body 0.4.0",
  "hyper 0.14.4",
- "hyper-rustls 0.22.1",
+ "hyper-rustls",
  "ipnet",
  "js-sys",
  "lazy_static",
@@ -1806,12 +1753,12 @@ dependencies = [
  "mime_guess",
  "percent-encoding",
  "pin-project-lite 0.2.4",
- "rustls 0.19.0",
+ "rustls",
  "serde",
  "serde_json",
  "serde_urlencoded",
  "tokio 1.2.0",
- "tokio-rustls 0.22.0",
+ "tokio-rustls",
  "url",
  "wasm-bindgen",
  "wasm-bindgen-futures",
@@ -1840,19 +1787,6 @@ name = "rustc-serialize"
 version = "0.3.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dcf128d1287d2ea9d80910b5f1120d0b8eede3fbf1abe91c40d39ea7d51e6fda"
-
-[[package]]
-name = "rustls"
-version = "0.18.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d1126dcf58e93cee7d098dbda643b5f92ed724f1f6a63007c1116eed6700c81"
-dependencies = [
- "base64 0.12.3",
- "log 0.4.14",
- "ring",
- "sct",
- "webpki",
-]
 
 [[package]]
 name = "rustls"
@@ -2014,7 +1948,7 @@ dependencies = [
  "flate2",
  "futures",
  "percent-encoding",
- "reqwest 0.11.1",
+ "reqwest",
  "serde",
  "serde_json",
  "static_assertions",
@@ -2141,13 +2075,13 @@ dependencies = [
  "anyhow",
  "async-std",
  "base64 0.13.0",
- "bytes 0.5.6",
+ "bytes 1.0.1",
  "dashmap",
  "dotenv",
  "egg-mode",
  "futures",
  "parking_lot",
- "reqwest 0.10.10",
+ "reqwest",
  "serde",
  "serde_json",
  "serenity",
@@ -2414,23 +2348,11 @@ dependencies = [
 
 [[package]]
 name = "tokio-rustls"
-version = "0.14.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e12831b255bcfa39dc0436b01e19fea231a37db570686c06ee72c423479f889a"
-dependencies = [
- "futures-core",
- "rustls 0.18.1",
- "tokio 0.2.25",
- "webpki",
-]
-
-[[package]]
-name = "tokio-rustls"
 version = "0.22.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bc6844de72e57df1980054b38be3a9f4702aba4858be64dd700181a8a6d0e1b6"
 dependencies = [
- "rustls 0.19.0",
+ "rustls",
  "tokio 1.2.0",
  "webpki",
 ]

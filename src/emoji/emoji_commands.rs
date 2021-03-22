@@ -1,3 +1,4 @@
+use reqwest::Url;
 use serenity::{
     framework::standard::{macros::command, Args, CommandResult},
     model::prelude::*,
@@ -5,16 +6,23 @@ use serenity::{
     Result as SerenityResult,
 };
 
-use tracing::info;
-
 #[command]
 #[only_in(guilds)]
 #[required_permissions("MANAGE_EMOJIS")]
 pub async fn new_emoji(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     let name = args.single_quoted::<String>()?;
     let image = args.single_quoted::<String>()?;
+    let url = Url::parse(&image);
 
-    info!("Image str: {}", image);
+    let _url = match url {
+        Ok(url) => url,
+        Err(_err) => {
+            msg.channel_id
+                .say(&ctx.http, "Invalid URL. Must be an image.")
+                .await?;
+            return Ok(());
+        }
+    };
 
     let resp = reqwest::get(&image).await?;
 

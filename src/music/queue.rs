@@ -284,7 +284,13 @@ impl TypeMapKey for QueueMap {
 pub async fn get_queue_from_ctx_and_guild_id(ctx: &Context, guild_id: GuildId) -> Queue {
     let data = ctx.data.read().await;
     let queue_container = data.get::<QueueMap>().unwrap().clone();
-    let queue = queue_container.get(&guild_id).unwrap().clone();
+    let queue = match queue_container.get(&guild_id) {
+        Some(queue) => queue.value().clone(),
+        None => {
+            queue_container.insert(guild_id, Default::default());
+            queue_container.get(&guild_id).unwrap().clone()
+        }
+    };
 
     queue
 }
