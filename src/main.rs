@@ -55,6 +55,7 @@ struct DiscordHandler {}
 #[async_trait]
 impl EventHandler for DiscordHandler {
     async fn cache_ready(&self, ctx: Context, _guilds: Vec<GuildId>) {
+        println!("Cache ready.");
         tasks::start(&ctx.clone()).await;
     }
 

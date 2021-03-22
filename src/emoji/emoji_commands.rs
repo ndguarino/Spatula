@@ -5,12 +5,16 @@ use serenity::{
     Result as SerenityResult,
 };
 
+use tracing::info;
+
 #[command]
 #[only_in(guilds)]
 #[required_permissions("MANAGE_EMOJIS")]
 pub async fn new_emoji(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
     let name = args.single_quoted::<String>()?;
     let image = args.single_quoted::<String>()?;
+
+    info!("Image str: {}", image);
 
     let resp = reqwest::get(&image).await?;
 

@@ -38,7 +38,7 @@ async fn play(ctx: &Context, msg: &Message, args: Args) -> CommandResult {
         }
     };
 
-    let guild = msg.guild(ctx).await.unwrap();
+    let guild = msg.guild(&ctx.cache).await.unwrap();
     let guild_id = guild.id;
 
     let manager = songbird::get(ctx).await.unwrap().clone();
